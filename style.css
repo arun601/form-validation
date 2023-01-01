@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&family=Mulish:ital,wght@1,300&display=swap'); 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --myfont:'Mulish',sans-serif;
+    --my-btn-font:'Montserrat',sans-serif;
+    --lg-lightcolor:linear-gradient(to left,rgba(116,235,213,0.6),rgba(159,172,230,0.6));
+    --lg-color:linear-gradient(to left,#74ebd5,#9face6);
+
+}
+body{
+    background-image: var(--lg-lightcolor),url(../pexels-gonzalo-mendiola-9295740.jpg);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: var(--myfont);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    background-color: #fff;
+    border-radius: 10px;
+    -webkit-border-radius:10px;
+    box-shadow: 0 2.8px 2.2px rgba(0,0,0,0.34),0 6.7px 5.3px rgba(0,0,0,0.048),0 12.7px 4px;
+    overflow: hidden;
+    width: 50%;
+    max-width: 50%;
+}
+.header{
+    background: var(--lg-color);
+    padding: 30px;
+    font-size: 40px;
+}
+.header h2{
+    color: #222;
+    font-family: var(--my-btn-font);
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+
+}
+.form{
+    
+    font-size: large;
+    font-weight: 600;
+    padding: 40px;
+}
+.form .btn{
+   background: var(--lg-color);
+   border-radius: 6px;
+   border: none;
+   outline: none;
+   color: rgb(216, 29, 29);
+   display: block;
+   font-family: var(--my-btn-font);
+   font-size: 16px;
+   padding: 15px 0;
+   margin-top: 20px;
+   width: 100%;
+   font-weight: bold;
+   text-transform: uppercase;
+   transition: all is ease;
+}
+.form .btn:hover{
+    background: linear-gradient(to right,#74ebb5,#9face6);
+
+}
+.form-control{
+    margin-bottom: 15px;
+    position: relative;
+    font-size: large;
+}
+.form-control input{
+    width: 100%;
+    border: 3px solid #f0f0f0;
+    border-radius: 5px;
+    display: block;
+    font-family: var(--myfont);
+    padding: 12px;
+    font-size: 14px;
+
+
+
+}
+.form-control input:focus{
+    outline: 0;
+    border-color: #2ecc71;
+}
+.form-control.success input{
+    border-color: #2ecc71;
+}
+.form-control.error input{
+    border-color: #e74c3c;
+}
+.form-control i{
+    position: absolute;
+    right: 12%;
+    top: 38px;
+    visibility: hidden;
+}
+.form-control small{
+    visibility: hidden;
+    color: hsl(0, 63%, 49%);
+    position: absolute;
+    left: 0%;
+
+}
+.form-control.error small{
+    visibility: visible;
+}
+.form-control.success i.fa-circle-check{
+    color: #2ecc71;
+    visibility: visible;
+}
+.form-control.error i.fa-circle-exclamation {
+    color: hsl(0, 63%, 49%);
+    visibility: visible;
+}
+@media(max-width:998px){
+    .container{
+        width:calc(100vw-35vw);
+        max-width: 100%;
+
+    }
+}
+

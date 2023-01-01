@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validatiobn</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>REGISTRATION FORM</h2>
+        </div>
+        <form class="form" id="form">
+            <div class="form-control">
+                <label>Username</label>
+                <input type="text" name="" id="username" placeholder="Enter your fullname ">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label>Email</label>
+                <input type="email" name="" id="email" placeholder="Enter your email ">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label>Phone number</label>
+                <input type="number" name="" id="phone" placeholder="Enter your Phone number ">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label>Passward</label>
+                <input type="password" name="" id="password" placeholder="Enter your password ">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label>Confirm password</label>
+                <input type="password" name="" id="cpassword" placeholder="Enter your fullname ">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>Error message</small>
+            </div>
+            <input type="submit" value="Submit" class="btn" name="">
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        const form = document.getElementById('form');
+        
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const phone = document.getElementById('phone');
+        const password = document.getElementById('password');
+        const cpassword = document.getElementById('cpassword');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            validate();
+        })
+
+        const sendData = (usernameval, sRate, count) => {
+            if (sRate === count) {
+                alert('Registration successfull');
+                swal("Welcome " + usernameval, "Registration successful");
+            }
+        }
+        const setsuccessMsg = (usernameval) => {
+            let formCon = document.getElementsByClassName('form-control');
+            var count = formCon.length - 1;
+            console.log(formCon);
+            for (var i = 0; i < formCon.length; i++) {
+                if (formCon[i].className === "form-control success") {
+                    var sRate = 0 + i;
+                    sendData(usernameval, sRate, count);
+                }
+                else {
+                    return false;
+                }
+            }
+
+
+        }
+
+        function isEmail(emailval) {
+            var atsymbol = emailval.indexOf("@");
+            if (atsymbol < 2) return false;
+            var dot = emailval.indexOf(".");
+            if (dot <= atsymbol + 2) return false;
+            // if(dot===emailval.length-1)return false;
+            return true;
+        }
+        //define validate function
+        const validate = () => {
+            const usernameval = username.value.trim();
+            
+            const emailval = email.value.trim();
+           
+            const phoneval = phone.value.trim();
+            const passwordval = password.value.trim();
+            const cpasswordval = cpassword.value.trim();
+
+            if (usernameval === "") {
+                setErrorMsg(username, 'username cant be blank');
+            }
+            else if (usernameval.length <= 2) {
+                setErrorMsg(username, 'username min of 3 char');
+            }
+            else {
+                setSuccessMsg(username);
+            }
+            if (emailval === "") {
+                setErrorMsg(email, 'email cant be blank');
+            }
+            else if (!isEmail(emailval)) {
+                setErrorMsg(email, 'not a valid email ');
+            }
+            else {
+                setSuccessMsg(email);
+            }
+            if (phoneval === "") {
+                setErrorMsg(phone, 'add phone number');
+            }
+            else if (phoneval.length !=10) {
+                setErrorMsg(phone, 'phone should be 10 digits');
+            }
+            else {
+                setSuccessMsg(phone);
+            }
+            if (passwordval === "") {
+                setErrorMsg(password, 'insert passwards');
+            }
+            else if (passwordval.length < 6) {
+                setErrorMsg(password, 'password must be at least 6 digit ');
+            }
+            else {
+                setSuccessMsg(password);
+            }
+            if (cpasswordval === "") {
+                setErrorMsg(cpassword, 'insert password');
+            }
+            else if (passwordval != cpasswordval) {
+                setErrorMsg(cpassword, 'password not match');
+            }
+            else {
+                setSuccessMsg(cpassword);
+            }
+            setsuccessMsg(usernameval);
+        }
+
+        function setErrorMsg(input, errormsg) {
+            const formcontrol = input.parentElement;
+            const small = formcontrol.querySelector('small');
+            formcontrol.className = "form-control error"
+            small.innerText = errormsg;
+        }
+        function setSuccessMsg(input) {
+            const formcontrol = input.parentElement;
+            formcontrol.className = "form-control success";
+        }
+
+    </script>
+</body>
+
+</html>
